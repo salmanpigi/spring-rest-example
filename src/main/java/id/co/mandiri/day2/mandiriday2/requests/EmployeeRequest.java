@@ -11,6 +11,8 @@ public class EmployeeRequest {
         this.address = address;
     }
 
+    public EmployeeRequest(){}
+
     public Integer getId() {
         return id;
     }

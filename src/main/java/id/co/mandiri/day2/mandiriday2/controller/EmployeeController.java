@@ -1,16 +1,23 @@
 package id.co.mandiri.day2.mandiriday2.controller;
 
 import id.co.mandiri.day2.mandiriday2.requests.EmployeeRequest;
+import id.co.mandiri.day2.mandiriday2.responses.EmployeeResponse;
 import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/employees")
 @RestController
 public class EmployeeController {
 
-    @GetMapping
-    public EmployeeRequest getEmployee() {
-        EmployeeRequest employeeRequest = new EmployeeRequest(1, "Salman", "Jakarta");
-        return employeeRequest;
+    @GetMapping("/{id}")
+    public EmployeeResponse findEmployeeById(
+                                              @PathVariable Integer id) {
+        EmployeeRequest request = new EmployeeRequest(id, "name", "address");
+        EmployeeResponse response = new EmployeeResponse();
+        response.setId(request.getId());
+//        response.setName(request.getName());
+//        response.setAddress(request.getAddress());
+
+        return response;
     }
 
     @GetMapping("/{name}")
@@ -28,11 +35,5 @@ public class EmployeeController {
         return request;
     }
 
-
-
-    @DeleteMapping("/delete")
-    public String deleteEmployee() {
-        return "delete successful";
-    }
 
 }
