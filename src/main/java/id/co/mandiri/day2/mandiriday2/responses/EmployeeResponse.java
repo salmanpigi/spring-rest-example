@@ -1,5 +1,7 @@
 package id.co.mandiri.day2.mandiriday2.responses;
 
+import org.springframework.http.HttpStatus;
+
 public class EmployeeResponse {
 
     public Integer id;
@@ -31,10 +33,12 @@ public class EmployeeResponse {
     }
 
     public String success() {
-        return "Data Employee Success Added";
+        return "Success";
     }
 
     public String error() {
         return "Error";
     }
+
+
 }

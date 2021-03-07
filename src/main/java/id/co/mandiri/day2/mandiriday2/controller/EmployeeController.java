@@ -2,38 +2,52 @@ package id.co.mandiri.day2.mandiriday2.controller;
 
 import id.co.mandiri.day2.mandiriday2.requests.EmployeeRequest;
 import id.co.mandiri.day2.mandiriday2.responses.EmployeeResponse;
+import id.co.mandiri.day2.mandiriday2.services.EmployeeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/employees")
 @RestController
 public class EmployeeController {
 
-    @GetMapping("/{id}")
-    public EmployeeResponse findEmployeeById(
-                                              @PathVariable Integer id) {
-        EmployeeRequest request = new EmployeeRequest(id, "name", "address");
-        EmployeeResponse response = new EmployeeResponse();
-        response.setId(request.getId());
-//        response.setName(request.getName());
-//        response.setAddress(request.getAddress());
+    @Autowired
+    EmployeeService service;
 
+    @GetMapping("/{id}")
+    public EmployeeResponse findEmployeeData(@RequestParam String name, @PathVariable Integer id) {
+
+        EmployeeRequest request = new EmployeeRequest();
+        EmployeeRequest data = service.findData(id, name);
+        EmployeeResponse response = new EmployeeResponse();
+        if (data == null) {
+            System.out.println("Data Not Found");
+        } else {
+            response.setId(request.getId());
+            response.setName(request.getName());
+            response.setAddress(request.getAddress());
+        }
         return response;
     }
 
-    @GetMapping("/{name}")
-    public String getEmployeeName(@PathVariable String name, @RequestParam(value = "umur", defaultValue = "22") String age) {
-        return "Hello " + name + " Age " + age;
-    }
-
-    @PostMapping("/add")
-    public String addEmployee(@RequestBody String name) {
-        return "Add employee name: " + name;
+    @PostMapping("/add-1")
+    public String addEmployeeSuccess(@RequestBody EmployeeRequest request) {
+        EmployeeResponse response = new EmployeeResponse();
+        return response.success();
     }
 
     @PostMapping("/add-2")
-    public EmployeeRequest addEmployee(@RequestBody EmployeeRequest request) {
-        return request;
+    public EmployeeResponse addEmployeeData(@RequestBody EmployeeRequest request) {
+        EmployeeResponse response = new EmployeeResponse();
+        response.setId(request.getId());
+        response.setName(request.getName());
+        response.setAddress(request.getAddress());
+        return response;
     }
 
+    @PostMapping("/add-3")
+    public String addEmployeeError(@RequestBody EmployeeRequest request) {
+        EmployeeResponse response = new EmployeeResponse();
+        return response.error();
+    }
 
 }

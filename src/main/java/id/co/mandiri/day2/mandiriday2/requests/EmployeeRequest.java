@@ -1,9 +1,9 @@
 package id.co.mandiri.day2.mandiriday2.requests;
 
 public class EmployeeRequest {
-    public Integer id;
-    public String name;
-    public String address;
+    public Integer id = 1;
+    public String name = "salman";
+    public String address = "jakarta";
 
     public EmployeeRequest(Integer id, String name, String address) {
         this.id = id;
