@@ -1,4 +1,4 @@
-package id.co.mandiri.day2.mandiriday2.requests;
+package id.co.mandiri.day2.mandiriday2.model.requests;
 
 public class EmployeeRequest {
     public Integer id = 1;

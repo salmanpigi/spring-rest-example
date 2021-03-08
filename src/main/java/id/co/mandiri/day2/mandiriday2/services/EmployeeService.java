@@ -1,8 +1,6 @@
 package id.co.mandiri.day2.mandiriday2.services;
 
-import id.co.mandiri.day2.mandiriday2.requests.EmployeeRequest;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import id.co.mandiri.day2.mandiriday2.model.requests.EmployeeRequest;
 import org.springframework.stereotype.Service;
 
 @Service

@@ -1,6 +1,4 @@
-package id.co.mandiri.day2.mandiriday2.responses;
-
-import org.springframework.http.HttpStatus;
+package id.co.mandiri.day2.mandiriday2.model.responses;
 
 public class EmployeeResponse {
 

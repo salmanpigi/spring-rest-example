@@ -1,13 +1,13 @@
 package id.co.mandiri.day2.mandiriday2.controller;
 
-import id.co.mandiri.day2.mandiriday2.requests.EmployeeRequest;
-import id.co.mandiri.day2.mandiriday2.responses.EmployeeResponse;
+import id.co.mandiri.day2.mandiriday2.model.requests.EmployeeRequest;
+import id.co.mandiri.day2.mandiriday2.model.responses.EmployeeResponse;
 import id.co.mandiri.day2.mandiriday2.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("/employees")
 @RestController
+@RequestMapping("/employees")
 public class EmployeeController {
 
     @Autowired
