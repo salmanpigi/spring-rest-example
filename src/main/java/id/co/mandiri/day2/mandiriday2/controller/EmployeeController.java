@@ -5,6 +5,8 @@ import id.co.mandiri.day2.mandiriday2.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/employees")
 public class EmployeeController {
@@ -12,47 +14,23 @@ public class EmployeeController {
     @Autowired
     EmployeeService service;
 
-    @GetMapping("/{id}")
+    @GetMapping("native-query-1/{id}")
     public Employee findEmployeeById(@PathVariable Integer id) {
-        return service.findById(id);
+        return service.findEmployeeById(id);
     }
-//    @GetMapping("/{id}")
-//    public EmployeeResponse findEmployeeData(@RequestParam String name, @PathVariable Integer id) {
-//
-//        EmployeeRequest request = new EmployeeRequest();
-//        EmployeeRequest data = service.findData(id, name);
-//        EmployeeResponse response = new EmployeeResponse();
-//        if (data == null) {
-//            System.out.println("Data Not Found");
-//        } else {
-//            response.setId(request.getId());
-//            response.setName(request.getName());
-//            response.setAddress(request.getAddress());
-//        }
-//        return response;
-//    }
-//
-//    @PostMapping("/add-1")
-//    public String addEmployeeSuccess(@RequestBody EmployeeRequest request) {
-//        EmployeeResponse response = new EmployeeResponse();
-//        return response.success();
-//    }
-//
-//    @PostMapping("/add-2")
-//    public EmployeeResponse addEmployeeData(@RequestBody EmployeeRequest request) {
-//        EmployeeResponse response = new EmployeeResponse();
-//        response.setId(request.getId());
-//        response.setName(request.getName());
-//        response.setAddress(request.getAddress());
-//        return response;
-//    }
-//
-//    @PostMapping("/add-3")
-//    public String addEmployeeError(@RequestBody EmployeeRequest request) {
-//        EmployeeResponse response = new EmployeeResponse();
-//        return response.error();
-//    }
 
+    @GetMapping("native-query-2/{id}")
+    public Employee findEmployeeByDeptIdAndSalary(@PathVariable Integer id, @RequestParam Integer salary) {
+        return service.findEmployeeByIdAndSalary(id, salary);
+    }
 
+    @GetMapping("native-query-3/{deptId}")
+    public List<Employee> findEmployeeByDeptIdAndDeptName(@PathVariable Integer deptId, @RequestParam String deptName) {
+        return service.findEmployeeByDeptIdAndDeptName(deptId, deptName);
+    }
 
+    @GetMapping("jpa-1/{jobId}")
+    public List<Employee> findEmployeeByNameAndSalary(@PathVariable String jobId, @RequestParam Integer deptId) {
+        return service.findEmployeeByJobIdAndDeptId(jobId, deptId);
+    }
 }
