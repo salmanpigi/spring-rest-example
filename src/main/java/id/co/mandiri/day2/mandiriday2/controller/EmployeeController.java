@@ -29,8 +29,28 @@ public class EmployeeController {
         return service.findEmployeeByDeptIdAndDeptName(deptId, deptName);
     }
 
+    @GetMapping("native-query-4/{deptId}")
+    public List<Employee> leftJoin(@PathVariable Integer deptId, @RequestParam String deptName) {
+        return service.leftJoin(deptId, deptName);
+    }
+
+    @GetMapping("native-query-5/{deptId}")
+    public List<Employee> rightJoin(@PathVariable Integer deptId, @RequestParam String deptName) {
+        return service.rightJoin(deptId, deptName);
+    }
+
+    @GetMapping("native-query-6/{deptId}")
+    public List<Employee> fullOuterJoin(@PathVariable Integer deptId, @RequestParam String deptName) {
+        return service.fullOuterJoin(deptId, deptName);
+    }
+
     @GetMapping("jpa-1/{jobId}")
     public List<Employee> findEmployeeByNameAndSalary(@PathVariable String jobId, @RequestParam Integer deptId) {
         return service.findEmployeeByJobIdAndDeptId(jobId, deptId);
+    }
+
+    @DeleteMapping("/jpa-2/{id}")
+    public Employee removeEmployeeById(@PathVariable Integer id) {
+        return service.removeEmployeeById(id);
     }
 }

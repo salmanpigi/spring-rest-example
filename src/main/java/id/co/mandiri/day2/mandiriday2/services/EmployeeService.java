@@ -13,4 +13,12 @@ public interface EmployeeService {
     List<Employee> findEmployeeByJobIdAndDeptId(String jobId, Integer deptId);
 
     List<Employee> findEmployeeByDeptIdAndDeptName(Integer deptId, String deptName);
+
+    List<Employee> leftJoin(Integer deptId, String deptName);
+
+    List<Employee> rightJoin(Integer deptId, String deptName);
+
+    List<Employee> fullOuterJoin(Integer deptId, String deptName);
+
+    Employee removeEmployeeById(Integer id);
 }
