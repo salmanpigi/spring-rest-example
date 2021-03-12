@@ -35,8 +35,6 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
             "e.department_id = d.department_id WHERE e.department_id = :deptId and d.department_name = :deptName")
     List<Employee> fullOuterJoin(Integer deptId, String deptName);
 
-    Employee removeEmployeeByEmployeeId(Integer id);
-
     @Override
     Optional<Employee> findById(Integer id);
 }

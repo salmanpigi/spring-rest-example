@@ -24,24 +24,24 @@ public class EmployeeController {
         return service.findEmployeeByIdAndSalary(id, salary);
     }
 
-    @GetMapping("native-query-3/{deptId}")
-    public List<Employee> findEmployeeByDeptIdAndDeptName(@PathVariable Integer deptId, @RequestParam String deptName) {
-        return service.findEmployeeByDeptIdAndDeptName(deptId, deptName);
+    @GetMapping("native-query-3/inner-join/{deptId}")
+    public List<Employee> findEmployeeByDeptIdAndDeptNameInnerJoin(@PathVariable Integer deptId, @RequestParam String deptName) {
+        return service.findEmployeeByDeptIdAndDeptNameInnerJoin(deptId, deptName);
     }
 
-    @GetMapping("native-query-4/{deptId}")
-    public List<Employee> leftJoin(@PathVariable Integer deptId, @RequestParam String deptName) {
-        return service.leftJoin(deptId, deptName);
+    @GetMapping("native-query-4/left-join/{deptId}")
+    public List<Employee> findEmployeeByDeptIdAndDeptNameLeftJoin(@PathVariable Integer deptId, @RequestParam String deptName) {
+        return service.findEmployeeByDeptIdAndDeptNameLeftJoin(deptId, deptName);
     }
 
-    @GetMapping("native-query-5/{deptId}")
+    @GetMapping("native-query-5/right-join/{deptId}")
     public List<Employee> rightJoin(@PathVariable Integer deptId, @RequestParam String deptName) {
-        return service.rightJoin(deptId, deptName);
+        return service.findEmployeeByDeptIdAndDeptNameRightJoin(deptId, deptName);
     }
 
-    @GetMapping("native-query-6/{deptId}")
+    @GetMapping("native-query-6/fullOuterJoin/{deptId}")
     public List<Employee> fullOuterJoin(@PathVariable Integer deptId, @RequestParam String deptName) {
-        return service.fullOuterJoin(deptId, deptName);
+        return service.findEmployeeByDeptIdAndDeptNameLeftJoinFullOuterJoin(deptId, deptName);
     }
 
     @GetMapping("jpa-1/{jobId}")
@@ -49,7 +49,7 @@ public class EmployeeController {
         return service.findEmployeeByJobIdAndDeptId(jobId, deptId);
     }
 
-    @DeleteMapping("/jpa-2/{id}")
+    @DeleteMapping("/jpa-2/delete/{id}")
     public Employee removeEmployeeById(@PathVariable Integer id) {
         return service.removeEmployeeById(id);
     }

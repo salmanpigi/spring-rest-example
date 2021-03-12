@@ -17,7 +17,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee findEmployeeById(Integer id) {
-        return repository.findEmployeeById(id);
+        return repository.findById(id).orElse(null);
     }
 
     @Override
@@ -31,35 +31,36 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public List<Employee> findEmployeeByDeptIdAndDeptName(Integer deptId, String deptName) {
+    public List<Employee> findEmployeeByDeptIdAndDeptNameInnerJoin(Integer deptId, String deptName) {
         return repository.findEmployeeByDeptIdAndDeptName(deptId, deptName);
     }
 
     @Override
-    public List<Employee> leftJoin(Integer deptId, String deptName) {
+    public List<Employee> findEmployeeByDeptIdAndDeptNameLeftJoin(Integer deptId, String deptName) {
         return repository.leftJoin(deptId, deptName);
     }
 
     @Override
-    public List<Employee> rightJoin(Integer deptId, String deptName) {
+    public List<Employee> findEmployeeByDeptIdAndDeptNameRightJoin(Integer deptId, String deptName) {
         return repository.rightJoin(deptId, deptName);
     }
 
     @Override
-    public List<Employee> fullOuterJoin(Integer deptId, String deptName) {
+    public List<Employee> findEmployeeByDeptIdAndDeptNameLeftJoinFullOuterJoin(Integer deptId, String deptName) {
         return repository.fullOuterJoin(deptId, deptName);
     }
+
 
     @Transactional
     @Override
     public Employee removeEmployeeById(Integer id) {
-        Employee getEmployeeId = repository.findEmployeeById(id);
-        if (getEmployeeId == null) {
-            return null;
+        Employee EmployeeEntity = findEmployeeById(id);
+        if (EmployeeEntity != null) {
+            repository.deleteById(id);
+            return EmployeeEntity;
         } else {
-            repository.removeEmployeeByEmployeeId(getEmployeeId.getEmployeeId());
+            return null;
         }
-        return getEmployeeId;
     }
 
 }
